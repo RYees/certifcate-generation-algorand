@@ -2,11 +2,14 @@ import React from 'react'
 
 const StaffUpload = () => {
   return (
+    <>
+     <div className='mt-32'>
+        <h1 className='text-center text-3xl text-white p-4'>Send Certificate to Algorand Blockchain</h1>
+      </div>   
+   
     <div>
         <div className='bg-red-500 p-2'>
-            <div>
-               <h1 className='text-center text-3xl text-white p-4'>Send Certificate to Algorand Blockchain</h1>
-            </div>      
+             
                 <form action="" className='flex flex-wrap gap-40 m-10 p-5 justify-center bg-gray-800'>
                     <div>
                     <div className='p-5'>
@@ -28,6 +31,7 @@ const StaffUpload = () => {
                 </form>
             </div>
     </div>
+    </>
   )
 }
 

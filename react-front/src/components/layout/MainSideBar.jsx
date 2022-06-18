@@ -6,9 +6,9 @@ const MainSideBar = () => {
     {/* <div>MainSideBar</div> */}
     <nav className=''>
         <ul className='mt-8'>
-            {/* <li>
+            <li>
                <Link to='/'>Login</Link>
-            </li> */}
+            </li>
             <li className='p-4 border w-64 ml-2 mb-5 cursor-pointer'>
                 <Link to='/staff' className='mt-10'>Staff</Link>
             </li>

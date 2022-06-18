@@ -1,7 +1,9 @@
 body.active-modal {
     overflow-y: hidden;
 }
-
+.no {
+    scroll-behavior: smooth;
+}
 .btn-modal {
     padding: 10px 20px;
     display: block;
@@ -29,7 +31,7 @@ body.active-modal {
     transform: translate(-50%, -50%);
     line-height: 1.4;
     background: #f1f1f1;
-    padding: 14px 28px;
+    padding: 34px 28px;
     border-radius: 3px;
     max-width: 60rem;
     min-width: 50rem;

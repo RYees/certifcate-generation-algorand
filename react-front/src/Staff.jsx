@@ -1,6 +1,6 @@
 import logo from './10logo.jpg';
 import pic from './10a.png';
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { MdMoney } from 'react-icons/md'; 
 import { AiFillCloseCircle } from 'react-icons/ai'
 import StaffUpload from './pages/StaffUpload';
@@ -9,6 +9,18 @@ import StaffTransaction from './pages/StaffTransaction';
 import "./modal.css";
 
 function Staff() {
+    const home = useRef(null);
+    const form = useRef(null);
+    const transaction = useRef(null);
+    
+
+    const scrollToSection = (elementRef) => {
+      window.scrollTo({
+        top: elementRef.current.offsetTop,
+        behavior: 'smooth'
+      })
+    }
+
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
       setModal(!modal);
@@ -22,11 +34,25 @@ function Staff() {
 
     return (
       <>
-      <div className="flex flex-row flex-wrap gap-52 justify-center my-24 text-white">
+      <nav className='fixed top-0 right-0'>
+            <ul className='flex justify-end my-4'>
+                <li onClick={()=> scrollToSection(home)}  className="text-white ml-8 hover:bg-red-500 hover:filter hover:brightness-110 hover:transition hover:ease-in-out cursor-pointer rounded px-5 py-2">
+                   Home
+                </li>
+                <li onClick={()=> scrollToSection(form)} className='text-white ml-8 hover:bg-red-500 hover:filter hover:brightness-110 hover:transition hover:ease-in-out cursor-pointer rounded px-5 py-2'>
+                   Form
+                </li>
+                <li onClick={()=> scrollToSection(transaction)} className='text-white ml-8 hover:bg-red-500 hover:filter hover:brightness-110 hover:transition hover:ease-in-out cursor-pointer rounded px-5 py-2'>
+                    Transaction
+                </li>
+            </ul>
+        </nav>
+       
+      <div ref={home} className="flex flex-row flex-wrap gap-52 justify-center mt-36 text-white">
       <div>
       
       <div className='mr-96 mb-10 flex gap-5 flex-row-reverse'>
-      <h1 className="text-3xl">
+      <h1 class Name="text-3xl">
         10academy
       </h1><span><img src={logo} alt="" height={20} width={70} /></span>
       </div>
@@ -59,11 +85,11 @@ function Staff() {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <p>
+            <h2 class="text-gray-900 text-center">
             RBAWCKKRQQSP5HVTSSSZSMWZZFKREGYMXIJ6PDERWGVTCSZCHAJZB76JKY
-            </p>
+            </h2>
             <button className="close-modal" onClick={toggleModal}>
-              <AiFillCloseCircle size='28px'/>
+              <AiFillCloseCircle size='28px'className="text-gray-900"/>
             </button>
           </div>
         </div>
@@ -72,12 +98,12 @@ function Staff() {
       </div>
       </div>
       
-      <div className='flex flex-col flex-wrap mx-20 gap-20 my-40'>
-      <div>
+      <div className='flex flex-col flex-wrap mx-20 gap-20'>
+      <div ref={form}>
       <StaffUpload />
       </div>
 
-      <div>
+      <div ref={transaction}>
         <StaffTransaction />
       </div>
       </div>
