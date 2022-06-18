@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import { MdMoney } from 'react-icons/md'; 
 import { AiFillCloseCircle } from 'react-icons/ai'
 import StaffUpload from './pages/StaffUpload';
-import StaffTransaction from './pages/StaffTransaction';
+import Transaction from './pages/Transaction';
 
 import "./modal.css";
 
@@ -34,7 +34,7 @@ function Staff() {
 
     return (
       <>
-      <nav className='fixed top-0 right-0'>
+      <nav className='fixed top-0 right-0 z-10'>
             <ul className='flex justify-end my-4'>
                 <li onClick={()=> scrollToSection(home)}  className="text-white ml-8 hover:bg-red-500 hover:filter hover:brightness-110 hover:transition hover:ease-in-out cursor-pointer rounded px-5 py-2">
                    Home
@@ -70,7 +70,7 @@ function Staff() {
       
       </div>
 
-      <div>
+      <div className="mt-14">
         <div className='bg-gradient-to-r from-red-600 via-blue-900 to-red-600 h-60 w-72 p-2 rounded-sm relative'>
           <div><MdMoney size="40px" /></div>
           <div className='flex flex-col justify-center text-center mt-8 text-xl'>
@@ -104,7 +104,7 @@ function Staff() {
       </div>
 
       <div ref={transaction}>
-        <StaffTransaction />
+        <Transaction />
       </div>
       </div>
       </>

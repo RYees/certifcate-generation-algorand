@@ -1,11 +1,11 @@
 import logo from '../10logo.jpg';
 // import * as React from 'react';
-import data from './StaffData';
+import data from './Data';
 import React, { useState } from "react";
 import { AiFillCloseCircle } from 'react-icons/ai'
 import '../modal.css'
 
-const StaffTransaction = () => {
+const Transaction = () => {
   const [time, setTime] = React.useState();
 
   const todos = [
@@ -91,4 +91,4 @@ const StaffTransaction = () => {
   )
 }
 
-export default StaffTransaction
+export default Transaction
