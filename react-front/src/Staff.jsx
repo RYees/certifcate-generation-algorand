@@ -22,7 +22,7 @@ function Staff() {
 
     return (
       <>
-      <div className="flex flex-row flex-wrap gap-52 justify-center my-24">
+      <div className="flex flex-row flex-wrap gap-52 justify-center my-24 text-white">
       <div>
       
       <div className='mr-96 mb-10 flex gap-5 flex-row-reverse'>
@@ -38,14 +38,14 @@ function Staff() {
 
       <div><img src={pic} alt="" height={30} width={490} /></div>
       <div className='mt-10'>
-        <a href="" className='text-md bg-red-500 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
+        <a href="" className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
       </div>
       </div>
       
       </div>
 
       <div>
-        <div className='bg-gradient-to-r from-yellow-600 via-gray-300 to-yellow-600 h-60 w-72 p-2 rounded-sm relative'>
+        <div className='bg-gradient-to-r from-red-600 via-blue-900 to-red-600 h-60 w-72 p-2 rounded-sm relative'>
           <div><MdMoney size="40px" /></div>
           <div className='flex flex-col justify-center text-center mt-8 text-xl'>
           <h1>Amount: 5 Algod</h1>
@@ -53,7 +53,7 @@ function Staff() {
           </div>
           
           <div className='absolute mt-12'>
-            <button className='bg-green-600 p-2 text-white rounded-full hover:filer hover:brightness-110' onClick={toggleModal}>Get Public key</button>
+            <button className='bg-gradient-to-l from-blue-600 via-gray-900 to-blue-600 p-2 text-white rounded-full hover:filer hover:brightness-110' onClick={toggleModal}>Get Public key</button>
           </div>
           {modal && (
         <div className="modal">
