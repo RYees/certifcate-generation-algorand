@@ -7,7 +7,7 @@ const TraineeRequest = () => {
       <div className='mt-32'>
         <h1 className='text-center text-3xl text-white p-4'>Send Request</h1>
       </div> 
-    <div className='flex flex-row gap-64 mt-10 mx-20'>
+    <div className='flex flex-row flex-wrap gap-64 mt-10'>
       <div>
        <h1 className='text-white text-2xl mb-5'>10academy Certificate</h1>
        <img src={cert} alt="" height={1} width={400} className="h-96"/>
