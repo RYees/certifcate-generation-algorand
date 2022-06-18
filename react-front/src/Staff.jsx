@@ -58,7 +58,7 @@ function Staff() {
       </div>
      
       <div>
-      <div>
+      <div className='mt-10'>
         <p>10 Academy identifies, trains and enables exceptionally talented young Africans <br></br> to have an outsized impact on the world.</p>
       </div>
 

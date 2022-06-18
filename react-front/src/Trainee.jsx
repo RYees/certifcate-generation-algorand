@@ -58,11 +58,11 @@ function Trainee() {
       </div>
      
       <div>
-      <div>
+      <div className='mb-10'>
         <p>10 Academy identifies, trains and enables exceptionally talented young Africans <br></br> to have an outsized impact on the world.</p>
       </div>
 
-      <div><img src={pic} alt="" height={30} width={490} /></div>
+      <div><img src={pic} alt="" height={10} width={490} /></div>
       <div className='mt-10'>
         <a href="" className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
       </div>
