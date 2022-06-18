@@ -1,9 +1,19 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './Login';
+import Staff from './Staff';
+import Trainee from './Trainee';
+// import MainSideBar from './components/layout/MainSideBar';
+
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div>
+    {/* <MainSideBar /> */}
+    <Routes>
+     <Route path='/' element={<Login />} />
+     <Route path='/staff' element={<Staff />} />
+     <Route path='/trainee' element={<Trainee />} />
+     </Routes>
+    
     </div>
   )
 }
