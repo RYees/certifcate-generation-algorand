@@ -19,12 +19,12 @@ algod_address = "http://localhost:4001"
 algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 algod_client = algod.AlgodClient(algod_token, algod_address)
 
-mnemonic_phrase = 'minor survey cool lemon arrest business train wash between curtain cement melody number tree ankle execute hospital public label nasty point large exchange about balcony'
+mnemonic_phrase = "essay bronze robot critic crisp skin awkward slab outside bulk obvious imitate noise mixed bench noodle olive tenant toward chapter happy riot cry ability water"
 
 # creater = account.generate_account()
-creater = {
-    'pk' : '5TM2H2P6QIFQGBJ56T3R3YTSLWAUPZ3MHMEMAA45ONPBMMQCEDTARYOG5Q',
-    'sk': mnemonic.to_private_key(mnemonic_phrase)
+creator = {
+    'pk' : 'CJO3CTO3HMHUDKOQ5XS5EGE7GUICWAXUH2MQFHQOSYNMVRU5ZIUK5IBRV4',
+    'sk': mnemonic.to_private_key(mnemonic_phrase),
 }
 
 # CREATE ASSET
@@ -37,20 +37,20 @@ params = algod_client.suggested_params()
 # sets Account 2 as the manager, reserve, freeze, and clawback address.
 # Asset Creation transaction
 txn = AssetConfigTxn(
-    sender=creater['pk'],
+    sender=creator['pk'],
     sp=params,
     total=10,
     default_frozen=False,
-    unit_name="10academy",
-    asset_name="10_acade",
-    manager=creater['pk'],
-    reserve=creater['pk'],
-    freeze=creater['pk'],
-    clawback=creater['pk'],
+    unit_name="10Ac",
+    asset_name="10 Academy",
+    manager=creator['pk'],
+    reserve=creator['pk'],
+    freeze=creator['pk'],
+    clawback=creator['pk'],
     url="https://10academy.org", 
     decimals=0)
 # Sign with secret key of creator
-stxn = txn.sign(creater['sk'])
+stxn = txn.sign(creator['sk'])
 # Send the transaction to the network and retrieve the txid.
 # try:
 txid = algod_client.send_transaction(stxn)
@@ -58,7 +58,7 @@ print("Signed transaction with txID: {}".format(txid))
 # Wait for the transaction to be confirmed
 confirmed_txn = wait_for_confirmation(algod_client, txid, 4)  
 print("TXID: ", txid)
-print("Result confirmed in round: {}".format(confirmed_tx['confirmed-round']))   
+print("Result confirmed in round: {}".format(confirmed_txn['confirmed-round']))   
 # except Exception as err:
 #     print(err)
 # # Retrieve the asset ID of the newly created asset by first
@@ -80,7 +80,7 @@ print("Result confirmed in round: {}".format(confirmed_tx['confirmed-round']))
 # except Exception as e:
 #     print(e)
 
-if __name__ == "__main__":
-    # print(algod_client.status())
-    # print(cosimo)
-    pass
+# if __name__ == "__main__":
+#     # print(algod_client.status())
+#     # print(cosimo)
+#     pass

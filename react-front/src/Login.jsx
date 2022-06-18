@@ -1,6 +1,11 @@
-import React from 'react'
+import { useNavigate }  from 'react-router-dom'
 
 const Login = () => {
+  const nav = useNavigate();
+  function handleLogin() {
+    
+    nav("/staff");
+  }
   return (
     <div className='text-center justify-center flex pt-36 pl-0 pr-0'>
         <div className='text-center flex justify-center h-96 w-96 shadow-xl rounded-lg bg-gray-200'>
@@ -15,7 +20,7 @@ const Login = () => {
             </div>
             </div>
             <div className='mt-14'>
-            <button className='py-5 px-7 w-32 text-xl bg-yellow-600 rounded-full cursor-pointer'>Login</button>
+            <button onClick={handleLogin} className='py-5 px-7 w-32 text-xl bg-yellow-600 rounded-full cursor-pointer'>Login</button>
             </div>
             </div>
         </div>
