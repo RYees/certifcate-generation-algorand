@@ -3,6 +3,9 @@ import pic from './10a.png';
 import React, { useState } from "react";
 import { MdMoney } from 'react-icons/md'; 
 import { AiFillCloseCircle } from 'react-icons/ai'
+import StaffUpload from './pages/StaffUpload';
+import StaffTransaction from './pages/StaffTransaction';
+
 import "./modal.css";
 
 function Staff() {
@@ -18,6 +21,7 @@ function Staff() {
     }
 
     return (
+      <>
       <div className="flex flex-row flex-wrap gap-52 justify-center my-24">
       <div>
       
@@ -34,7 +38,7 @@ function Staff() {
 
       <div><img src={pic} alt="" height={30} width={490} /></div>
       <div className='mt-10'>
-        <a href="" className='text-md bg-red-500 p-4 rounded-full text-white hover:filter hover:brightness-110'>See more</a>
+        <a href="" className='text-md bg-red-500 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
       </div>
       </div>
       
@@ -64,10 +68,20 @@ function Staff() {
           </div>
         </div>
       )}
-        </div>
-        
+        </div>        
       </div>
       </div>
+      
+      <div className='flex flex-col flex-wrap mx-20 gap-20 my-40'>
+      <div>
+      <StaffUpload />
+      </div>
+
+      <div>
+        <StaffTransaction />
+      </div>
+      </div>
+      </>
     )
   }
   
