@@ -5,16 +5,16 @@ import { MdMoney } from 'react-icons/md';
 import { AiFillCloseCircle } from 'react-icons/ai'
 import StaffUpload from './pages/StaffUpload';
 import Transaction from './pages/Transaction';
-import Aos from 'aos';
-import "aos/dist/aos.css"
+// import Aos from 'aos';
+// import "aos/dist/aos.css"
 
 import "./modal.css";
 
 
 function Staff() {
-    useEffect(() => {
-      Aos.init({duration: 2000});
-    }, []);
+    // useEffect(() => {
+    //   Aos.init({duration: 2000});
+    // }, []);
 
     const home = useRef(null);
     const form = useRef(null);
@@ -55,7 +55,7 @@ function Staff() {
             </ul>
         </nav>
        
-      <div ref={home} className="flex flex-row flex-wrap gap-52 justify-center mt-32 text-white" data-aos="fade-down">
+      <div ref={home} className="flex flex-row flex-wrap gap-52 justify-center mt-32 text-white">
       <div>
       
       <div className='mr-96 mb-10 flex gap-5 flex-row-reverse'>
@@ -105,12 +105,12 @@ function Staff() {
       </div>
       </div>
       
-      <div className='flex flex-col flex-wrap mx-20 gap-20' data-aos="fade-down">
+      <div className='flex flex-col flex-wrap mx-20 gap-20'>
       <div ref={form}>
       <StaffUpload />
       </div>
 
-      <div ref={transaction} data-aos="fade-right">
+      <div ref={transaction}>
         <Transaction />
       </div>
       </div>
