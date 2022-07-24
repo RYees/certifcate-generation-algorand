@@ -10,6 +10,20 @@ import Transaction from './pages/Transaction';
 
 import "./modal.css";
 
+function connect() {
+  AlgoSigner.connect()
+  .then((d) => {
+    alert(JSON.stringify("Connected Successfully!", null, 2));
+  })
+  .catch((e) => {
+    console.error(e);
+    alert(JSON.stringify(e, null, 2));
+  })
+  .finally(() => {
+    hljs.highlightBlock(connectCodeElem);
+    console.log('summer');
+  });
+}
 
 function Staff() {
     // useEffect(() => {
@@ -71,7 +85,7 @@ function Staff() {
 
       <div><img src={pic} alt="" height={30} width={490} /></div>
       <div className='mt-10'>
-        <a href="" className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
+        <a href="" onClick={connect} className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
       </div>
       </div>
       

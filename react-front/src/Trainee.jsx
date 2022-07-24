@@ -1,19 +1,50 @@
 import logo from './10logo.jpg';
 import pic from './10a.png';
-import React, { useState, useRef, useEffect } from "react";
+import React, { useContext,useState, useRef } from "react";
 import { MdMoney } from 'react-icons/md'; 
 import { AiFillCloseCircle } from 'react-icons/ai'
 import TraineeRequest from './pages/TraineeRequest';
 import Transaction from './pages/Transaction';
-// import Aos from 'aos';
-// import "aos/dist/aos.css"
 
 import "./modal.css";
+// import TransactionContext from './context/TransactionContext';
+
+// const { connect } = useContext(TransactionContext);
+function connect() {
+  AlgoSigner.connect()
+  .then((d) => {
+    alert(JSON.stringify("Connected Successfully!", null, 2));
+  })
+  .catch((e) => {
+    console.error(e);
+    alert(JSON.stringify(e, null, 2));
+  })
+  .finally(() => {
+     console.log('summer');
+  });
+}
+
+function accounts() { 
+  AlgoSigner.accounts({
+    ledger: 'TestNet'
+  })
+  .then((d) => {
+    const arr = JSON.stringify(d);
+    alert(arr);
+    // const account = arr.find(obj => {
+    //   return obj.address;
+    // });
+    // this.setCurrentAccount(arr);
+  })
+  .catch((e) => {
+    console.error(e);
+   })
+  .finally(() => {
+  });
+}
 
 function Trainee() {
-  // useEffect(() => {
-  //   Aos.init({duration: 2000});
-  // }, []);
+  // const { connect } = useContext(TransactionContext);
 
     const home = useRef(null);
     const request = useRef(null);
@@ -70,7 +101,7 @@ function Trainee() {
 
       <div><img src={pic} alt="" height={10} width={490} /></div>
       <div className='mt-10'>
-        <a href="" className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
+        <a href="" onClick={connect} className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
       </div>
       </div>
       
@@ -85,7 +116,7 @@ function Trainee() {
           </div>
           
           <div className='absolute mt-12'>
-            <button className='bg-gradient-to-l from-blue-600 via-gray-900 to-blue-600 p-2 text-white rounded-full hover:filer hover:brightness-110' onClick={toggleModal}>Get Public key</button>
+            <button className='bg-gradient-to-l from-blue-600 via-gray-900 to-blue-600 p-2 text-white rounded-full hover:filer hover:brightness-110' onClick={accounts}>Get Public key</button>
           </div>
           {modal && (
         <div className="modal">
