@@ -5,6 +5,8 @@ import { MdMoney } from 'react-icons/md';
 import { AiFillCloseCircle } from 'react-icons/ai'
 import StaffUpload from './pages/StaffUpload';
 import Transaction from './pages/Transaction';
+import axios from "axios";
+
 // import Aos from 'aos';
 // import "aos/dist/aos.css"
 
@@ -26,9 +28,32 @@ function connect() {
 }
 
 function Staff() {
+ // const [initialData, setInitialData] = useState([{}]);
     // useEffect(() => {
-    //   Aos.init({duration: 2000});
-    // }, []);
+    //   fetch("/api").then(
+    //     response => console.log(response)
+    //   ).then(data => {console.log(data)})
+    // },[]);
+
+
+  function getData() {
+    axios({
+      method: "GET",
+      url:"http://localhost:5000/api",
+    })
+    .then((response) => {
+      const res =response.data
+      console.log(res);
+      // setProfileData(({
+      //   profile_name: res.name,
+      //   about_me: res.about}))
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        }
+    })}
 
     const home = useRef(null);
     const form = useRef(null);
@@ -73,8 +98,8 @@ function Staff() {
       <div>
       
       <div className='mr-96 mb-10 flex gap-5 flex-row-reverse'>
-      <h1 class Name="text-3xl">
-        10academy
+      <h1 className="text-3xl">
+       <button onClick={getData}>10academy</button> 
       </h1><span><img src={logo} alt="" height={20} width={70} /></span>
       </div>
      
@@ -106,7 +131,7 @@ function Staff() {
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2 class="text-gray-900 text-center">
+            <h2 className="text-gray-900 text-center">
             RBAWCKKRQQSP5HVTSSSZSMWZZFKREGYMXIJ6PDERWGVTCSZCHAJZB76JKY
             </h2>
             <button className="close-modal" onClick={toggleModal}>
