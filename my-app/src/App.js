@@ -1,12 +1,12 @@
 /*global AlgoSigner*/
 import React, {useRef} from "react";
 import ConnectAlgoSigner from "./ConnectAlgoSigner";
-import logo from './10logo.jpg';
-import pic from './10a.png';
+import logo from './img/10logo.jpg';
+import pic from './img/10a.png';
 //import SignPayTransaction from "./SignPayTransaction";
 // import algoSignerlogo from '../../assets/images/algosigner.jpeg'
 // import Transaction from "./Transaction";
-import styleclass from './style.css';
+import './style.css';
 import { AlgoSignerMain } from "./AlgoSigner.styles";
 import CreateAsset from "./CreateAsset";
 import AssetOptin from "./AssetOptin";

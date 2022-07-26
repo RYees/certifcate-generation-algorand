@@ -27,10 +27,28 @@
   margin-top: 60px;
   padding: 10px;
   background-color: #1d223845;
+  margin-bottom: 9rem;
 }
 
 .title {
  color: white;
  font-size: 2rem;
+}
+
+.titlehead {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.section{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.box {
+    color: #fff;
+    background-color: #1d223845;
+    padding: 1rem;
 }
 
