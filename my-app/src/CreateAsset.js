@@ -4,6 +4,9 @@ import { FormStyle } from "./Form.style";
 import { TransactionButton } from "./Button.styles";
 import { BodyText } from "./MyAlgoWallet.styles";
 import { TOKEN, ALGOD_SERVER, PORT, RECEIVER } from "./constants";
+import style from './style.css';
+import Transaction from "./Transaction";
+
 const algosdk = require("algosdk");
 
 const CreateAsset = ({userAccount}) => {
@@ -55,17 +58,20 @@ const CreateAsset = ({userAccount}) => {
     }
 
     return(
-    <div>
+    <>
+    <div className="create">
+     <BodyText className="title">Create Asset for Trainee Certfication</BodyText>
         <div>
-            <BodyText>Create Asset</BodyText>
             <FormStyle onChange = {(e) => assetName.current = e.target.value} placeholder="Asset name" /><br/>
             <FormStyle onChange = {(e) => unitName.current = e.target.value} placeholder="Unit name" /><br/>
             <FormStyle onChange = {(e) => totalUnit.current = e.target.value} placeholder="Total units" /><br/>
             <FormStyle onChange = {(e) => decimals.current = e.target.value} placeholder="Decimals" /><br/>
             <FormStyle onChange = {(e) => note.current = e.target.value} placeholder="Enter note" /><br/>
-            <TransactionButton backgroundColor onClick ={createAsset}>{isLoading ? "loading...": "Sign Create Asset"}</TransactionButton>
+            <TransactionButton backgroundColor onClick ={createAsset}>{isLoading ? "loading...": "Create Asset"}</TransactionButton>
         </div>
     </div>
+    <Transaction/>
+    </>
     )
 }
 

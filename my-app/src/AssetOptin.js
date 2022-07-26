@@ -55,13 +55,13 @@ const CreateAsset = ({userAccount}) => {
    }
 
     return(
-    <div>
+    <div className="create">
+        <BodyText className="title">Request Certficate</BodyText>
         <div>
-            <BodyText>Asset Optin</BodyText>
             <FormStyle onChange = {(e) => receiver.current = e.target.value} placeholder="Receiver address" /><br/>
             <FormStyle onChange = {(e) => assetIndex.current = e.target.value} placeholder="Asset index" /><br/>
             <FormStyle onChange = {(e) => note.current = e.target.value} placeholder="Note" /><br/>
-            <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Sign Asset Optin"}</TransactionButton>
+            <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
         </div>
     </div>
     )

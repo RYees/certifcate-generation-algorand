@@ -1,0 +1,36 @@
+.header{
+    padding: 20px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #fff;
+    gap: 90px;
+    margin-bottom: 5rem;
+}
+.head {
+    font-size: 2rem;
+}
+.image {
+    padding: 50px 0px 0px 0px;
+}
+.first_contain {
+    width: 35rem;
+}
+.algo {
+    margin: 30px;
+    text-align: center;
+}
+
+/* section2 */
+.create {
+  margin-top: 60px;
+  padding: 10px;
+  background-color: #1d223845;
+}
+
+.title {
+ color: white;
+ font-size: 2rem;
+}
+
