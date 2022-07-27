@@ -10,6 +10,7 @@ import { AlgoSignerMain } from "./components/AlgoSigner.styles";
 import CreateAsset from "./components/CreateAsset";
 import AssetOptin from "./components/AssetOptin";
 import TransferAsset from "./components/TransferAsset";
+import DeleteAsset from "./components/DeleteAsset";
 
 const App =  ()  =>{
     const userAccount = useRef()
@@ -44,7 +45,7 @@ const App =  ()  =>{
             <CreateAsset userAccount = {userAccount} />
             <AssetOptin className="optin" userAccount = {userAccount} />
             <TransferAsset className="optin" userAccount = {userAccount} />
-        
+            <DeleteAsset className="optin" userAccount = {userAccount} />
         </AlgoSignerMain>
         </>
     )

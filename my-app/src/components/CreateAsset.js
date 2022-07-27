@@ -13,6 +13,8 @@ const algosdk = require("algosdk");
 
 const CreateAsset = ({userAccount}) => {
     const [modal, setModal] = useState(false);
+    const [status, setStatus] = useState('');
+    const [isLoading, setLoading] = useState(false);
 
     const assetURL = useRef()
     const assetName = useRef()
@@ -21,7 +23,6 @@ const CreateAsset = ({userAccount}) => {
     const note = useRef()
     const decimals = useRef()
     const traineeadd = useRef()
-    const [isLoading, setLoading] = useState(false)
     
     
     const toggleModal = () => {
@@ -114,7 +115,7 @@ const CreateAsset = ({userAccount}) => {
                   });
                   
                 // Use the AlgoSigner encoding library to make the transactions base64
-                  let txn_b64 = AlgoSigner.encoding.msgpackToBase64(txn.toByte());
+                let txn_b64 = AlgoSigner.encoding.msgpackToBase64(txn.toByte());
                   
                 let signedTxs = await AlgoSigner.signTxn([{txn: txn_b64}])
     
@@ -123,19 +124,24 @@ const CreateAsset = ({userAccount}) => {
     
                 // Send the transaction through the SDK client
                 let id = await client.sendRawTransaction(binarySignedTx).do();
-                    console.log('success', id)
-                    
+                    //console.log('success', id)
+                    setStatus('Transaction sent successfully!');
+                    toggleModal();
                     setLoading(false)
-                    if(id['txId'] !== null){
-                        await printCreatedAsset(client, userAccount.current[0].address, assetID);
-                        await printAssetHolding(client, userAccount.current[0].address, assetID);
-                    }
+                    // if(id['txId'] !== null){
+                    //     await printCreatedAsset(client, userAccount.current[0].address, assetID);
+                    //     await printAssetHolding(client, userAccount.current[0].address, assetID);
+                    // }
             }catch(err){
                 console.log('error', err)
+                setStatus('Asset Id not send successfully');
+                toggleModal();
                 setLoading(false)
             }  
         }catch(err){
             console.log('error first',err)
+            setStatus('Asset creation failed, check if your Algosigner account is connected');
+            toggleModal();
             setLoading(false)
         }
     }
@@ -160,7 +166,7 @@ const CreateAsset = ({userAccount}) => {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
             <h2 className="text-gray-900 text-center">
-            Successfully created
+               {status}
             </h2>
             <button className="close-modal" onClick={toggleModal}>
               <AiFillCloseCircle size='28px'className="text-gray-900"/>

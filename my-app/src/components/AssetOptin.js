@@ -3,17 +3,25 @@ import React, { useRef, useState } from "react";
 import { FormStyle } from "../css/Form.style";
 import { TransactionButton } from "../css/Button.styles";
 import { BodyText } from "../css/MyAlgoWallet.styles";
+import { AiFillCloseCircle } from 'react-icons/ai';
+import "../css/modal.css";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 
 
 const algosdk = require("algosdk");
 
 const AssetOptin = ({userAccount}) => {
+    const [modal, setModal] = useState(false);
+    const [status, setStatus] = useState('');
+    const [isLoading, setLoading] = useState(false);
+
     const optsender = useRef()
     const assetIndex = useRef()
     const notes = useRef()
-    const [isLoading, setLoading] = useState(false)
-
+    
+    const toggleModal = () => {
+        setModal(!modal);
+    };
 
     const optInToAnAsset = async () =>{
         setLoading(true)
@@ -41,9 +49,9 @@ const AssetOptin = ({userAccount}) => {
    
             // Send the transaction through the SDK client
            let id = await client.sendRawTransaction(binarySignedTx).do();
-               console.log('wow',id['txId']);
+            //    console.log('wow',id['txId']);
+            // setStatus('Asset opt-in sent successfully!');
                if(id['txId'] !== null){
-                    console.log('great');
                     const enc = new TextEncoder();
                     const notes = enc.encode('An asset opt-in is requested by a 10academy traniee, approve request');
                     
@@ -65,31 +73,55 @@ const AssetOptin = ({userAccount}) => {
                         let binarySignedTx = AlgoSigner.encoding.base64ToMsgpack(signedTxs[0].blob);
             
                         // Send the transaction through the SDK client
-                        let res = await client.sendRawTransaction(binarySignedTx).do();
-                            console.log('success',res)
+                        await client.sendRawTransaction(binarySignedTx).do();
+                        //let res = await client.sendRawTransaction(binarySignedTx).do();
+                            // console.log('success',res)
+                            setStatus('Asset opt-in sent successfully!');
+                            toggleModal();
                             setLoading(false)
                         }catch(err){
-                            console.log('error', err)
+                            console.log('error', err);
+                            setStatus('Asset opt-in not sent successfully');
+                            toggleModal();
                             setLoading(false)
                         }  
                }
             setLoading(false)
        }catch(err){
-           console.log(err)
+           console.log(err);
+           setStatus('Asset opt-in not sent successfully');
+           toggleModal();
            setLoading(false)
        }
    }
 
     return(
-    <div className="create">
-        <BodyText className="title">Request Certficate</BodyText>
-        <div>
-            <FormStyle onChange = {(e) => optsender.current = e.target.value} placeholder="Requester address" /><br/>
-            <FormStyle onChange = {(e) => assetIndex.current = e.target.value} placeholder="Asset index" /><br/>
-            <FormStyle onChange = {(e) => notes.current = e.target.value} placeholder="Note" /><br/>
-            <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
-        </div>
-    </div>
+        <>
+            <div className="create">
+                <BodyText className="title">Request Certficate</BodyText>
+                <div>
+                    <FormStyle onChange = {(e) => optsender.current = e.target.value} placeholder="Requester address" /><br/>
+                    <FormStyle onChange = {(e) => assetIndex.current = e.target.value} placeholder="Asset index" /><br/>
+                    <FormStyle onChange = {(e) => notes.current = e.target.value} placeholder="Note" /><br/>
+                    <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
+                </div>
+            </div>
+            
+            {modal && (
+                <div className="modal">
+                <div onClick={toggleModal} className="overlay"></div>
+                <div className="modal-content">
+                    <h2 className="text-gray-900 text-center">
+                    {status}
+                    </h2>
+                    <button className="close-modal" onClick={toggleModal}>
+                    <AiFillCloseCircle size='28px'className="text-gray-900"/>
+                    </button>
+                </div>
+                </div>
+            )}
+      </>
+
     )
 }
 

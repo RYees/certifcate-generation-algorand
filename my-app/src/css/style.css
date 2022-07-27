@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    color: #fff;
+    color: rgb(0, 0, 0);
     gap: 90px;
     margin-bottom: 5rem;
 }

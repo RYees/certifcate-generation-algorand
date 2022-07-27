@@ -13,7 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color:#0f0e13;
   background-image: 
-    radial-gradient(at 0% 0%, rgb(22, 0, 0) 0, transparent 50%), 
+    radial-gradient(at 0% 0%, rgb(255, 255, 255) 0, transparent 50%), 
     radial-gradient(at 50% 0%, #df1f1f 0, transparent 50%), 
-    radial-gradient(at 100% 0%, rgb(4, 0, 22) 0, transparent 50%);
+    radial-gradient(at 100% 0%, rgb(255, 255, 255) 0, transparent 50%);
 }
