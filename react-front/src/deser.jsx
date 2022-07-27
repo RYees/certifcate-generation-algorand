@@ -123,7 +123,7 @@ const connectAlgoSigner = async () =>{
         <a href="" onClick={connectAlgoSigner} className='text-md bg-red-600 p-4 rounded-full text-white hover:filter hover:brightness-110'>Connect Wallet</a>
       </div>
       </div>
-      
+      #dc2626
       </div>
 
       <div className="mt-14">

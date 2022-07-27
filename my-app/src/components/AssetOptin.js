@@ -4,38 +4,33 @@ import { FormStyle } from "../css/Form.style";
 import { TransactionButton } from "../css/Button.styles";
 import { BodyText } from "../css/MyAlgoWallet.styles";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
-// const ALGOD_SERVER = 'https://testnet-algorand.api.purestake.io/ps2';
-// const INDEXER_SERVER = 'https://testnet-algorand.api.purestake.io/idx2';
-// const TOKEN = { 'X-API-Key': 'fetqTyZ8r82MSX9YT2pLq53iRMZwVibQx3TtrZ2h' }
-// const PORT = '443';
+
 
 const algosdk = require("algosdk");
 
-const CreateAsset = ({userAccount}) => {
-    const receiver = useRef()
+const AssetOptin = ({userAccount}) => {
+    const optsender = useRef()
     const assetIndex = useRef()
-    const note = useRef()
+    const notes = useRef()
     const [isLoading, setLoading] = useState(false)
 
 
     const optInToAnAsset = async () =>{
-      //  console.log('weird');
         setLoading(true)
         let client =   new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
                
         //Query Algod to get testnet suggested params
-        let txParamsJS = await client.getTransactionParams().do()
+        let txParamsJS = await client.getTransactionParams().do();
        try{
            const txn = await new algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
-               from: userAccount.current[0].address,
-               to: receiver.current,
+               from: optsender.current,
+               to: optsender.current,
                assetIndex: +assetIndex.current,
-               note: AlgoSigner.encoding.stringToByteArray(note.current),
+               note: AlgoSigner.encoding.stringToByteArray(notes.current),
                amount: 0,
                suggestedParams: {...txParamsJS}
              });
-             
-             // Use the AlgoSigner encoding library to make the transactions base64
+  
              const txn_b64 = AlgoSigner.encoding.msgpackToBase64(txn.toByte());
              
            const signedTxs = await AlgoSigner.signTxn([{txn: txn_b64}]) 
@@ -46,8 +41,39 @@ const CreateAsset = ({userAccount}) => {
    
             // Send the transaction through the SDK client
            let id = await client.sendRawTransaction(binarySignedTx).do();
-               console.log(id)
-               setLoading(false)
+               console.log('wow',id['txId']);
+               if(id['txId'] !== null){
+                    console.log('great');
+                    const enc = new TextEncoder();
+                    const notes = enc.encode('An asset opt-in is requested by a 10academy traniee, approve request');
+                    
+                    try{
+                        const txn = await new algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+                            from: optsender.current,
+                            to: userAccount.current[0].address,
+                            amount : 0,
+                            note: notes,
+                            suggestedParams: {...txParamsJS}
+                        });
+                        
+                        // Use the AlgoSigner encoding library to make the transactions base64
+                        let txn_b64 = AlgoSigner.encoding.msgpackToBase64(txn.toByte());
+                        
+                        let signedTxs = await AlgoSigner.signTxn([{txn: txn_b64}])
+            
+                        // Get the base64 encoded signed transaction and convert it to binary
+                        let binarySignedTx = AlgoSigner.encoding.base64ToMsgpack(signedTxs[0].blob);
+            
+                        // Send the transaction through the SDK client
+                        let res = await client.sendRawTransaction(binarySignedTx).do();
+                            console.log('success',res)
+                            setLoading(false)
+                        }catch(err){
+                            console.log('error', err)
+                            setLoading(false)
+                        }  
+               }
+            setLoading(false)
        }catch(err){
            console.log(err)
            setLoading(false)
@@ -58,13 +84,13 @@ const CreateAsset = ({userAccount}) => {
     <div className="create">
         <BodyText className="title">Request Certficate</BodyText>
         <div>
-            <FormStyle onChange = {(e) => receiver.current = e.target.value} placeholder="Receiver address" /><br/>
+            <FormStyle onChange = {(e) => optsender.current = e.target.value} placeholder="Requester address" /><br/>
             <FormStyle onChange = {(e) => assetIndex.current = e.target.value} placeholder="Asset index" /><br/>
-            <FormStyle onChange = {(e) => note.current = e.target.value} placeholder="Note" /><br/>
+            <FormStyle onChange = {(e) => notes.current = e.target.value} placeholder="Note" /><br/>
             <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
         </div>
     </div>
     )
 }
 
-export default CreateAsset
+export default AssetOptin
