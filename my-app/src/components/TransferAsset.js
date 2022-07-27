@@ -29,7 +29,7 @@ const TransferAsset = ({userAccount}) => {
                assetIndex: +assetIndex.current,
                note: AlgoSigner.encoding.stringToByteArray(note.current),
                assetURL: 'https://fame',
-               amount: 0,
+               amount: 50,
                suggestedParams: {...txParamsJS}
              });
              

@@ -9,9 +9,9 @@ import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 const algosdk = require("algosdk");
 
 const AssetOptin = ({userAccount}) => {
-    const receiver = useRef()
+    const optsender = useRef()
     const assetIndex = useRef()
-    const note = useRef()
+    const notes = useRef()
     const [isLoading, setLoading] = useState(false)
 
 
@@ -20,19 +20,17 @@ const AssetOptin = ({userAccount}) => {
         let client =   new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
                
         //Query Algod to get testnet suggested params
-        let txParamsJS = await client.getTransactionParams().do()
+        let txParamsJS = await client.getTransactionParams().do();
        try{
            const txn = await new algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
-               from: userAccount.current[0].address,
-               to: receiver.current,
+               from: optsender.current,
+               to: optsender.current,
                assetIndex: +assetIndex.current,
-               note: AlgoSigner.encoding.stringToByteArray(note.current),
-               assetURL: 'https://fame',
+               note: AlgoSigner.encoding.stringToByteArray(notes.current),
                amount: 0,
                suggestedParams: {...txParamsJS}
              });
-             
-             // Use the AlgoSigner encoding library to make the transactions base64
+  
              const txn_b64 = AlgoSigner.encoding.msgpackToBase64(txn.toByte());
              
            const signedTxs = await AlgoSigner.signTxn([{txn: txn_b64}]) 
@@ -43,7 +41,8 @@ const AssetOptin = ({userAccount}) => {
    
             // Send the transaction through the SDK client
            let id = await client.sendRawTransaction(binarySignedTx).do();
-               console.log(id)
+               console.log(id);
+               console.log("Account 3 optin asset = " + optsender);
                setLoading(false)
        }catch(err){
            console.log(err)
@@ -55,9 +54,9 @@ const AssetOptin = ({userAccount}) => {
     <div className="create">
         <BodyText className="title">Request Certficate</BodyText>
         <div>
-            <FormStyle onChange = {(e) => receiver.current = e.target.value} placeholder="Receiver address" /><br/>
+            <FormStyle onChange = {(e) => optsender.current = e.target.value} placeholder="Requester address" /><br/>
             <FormStyle onChange = {(e) => assetIndex.current = e.target.value} placeholder="Asset index" /><br/>
-            <FormStyle onChange = {(e) => note.current = e.target.value} placeholder="Note" /><br/>
+            <FormStyle onChange = {(e) => notes.current = e.target.value} placeholder="Note" /><br/>
             <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
         </div>
     </div>

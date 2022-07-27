@@ -1,16 +1,15 @@
-/*global AlgoSigner*/
+// /*global AlgoSigner*/
 import React, {useRef} from "react";
 import ConnectAlgoSigner from "./components/ConnectAlgoSigner";
 import logo from './img/10logo.jpg';
 import pic from './img/10a.png';
 //import SignPayTransaction from "./SignPayTransaction";
 // import algoSignerlogo from '../../assets/images/algosigner.jpeg'
-// import Transaction from "./Transaction";
 import './css/style.css';
 import { AlgoSignerMain } from "./components/AlgoSigner.styles";
 import CreateAsset from "./components/CreateAsset";
 import AssetOptin from "./components/AssetOptin";
-
+import TransferAsset from "./components/TransferAsset";
 
 const App =  ()  =>{
     const userAccount = useRef()
@@ -44,6 +43,8 @@ const App =  ()  =>{
             {/* <SignPayTransaction userAccount = {userAccount} amount = {amount} receipient = {receipient} /> */}
             <CreateAsset userAccount = {userAccount} />
             <AssetOptin className="optin" userAccount = {userAccount} />
+            <TransferAsset className="optin" userAccount = {userAccount} />
+        
         </AlgoSignerMain>
         </>
     )

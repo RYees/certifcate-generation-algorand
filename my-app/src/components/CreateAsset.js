@@ -37,6 +37,7 @@ const CreateAsset = ({userAccount}) => {
                 total: +totalUnit.current,
                 decimals: +decimals.current,
                 assetURL : +assetURL.current,
+                assetMetadataHash: "16efaa3924a6fd9d3a4824799a4ac65d",
                 manager: userAccount.current[0].address,
                 reserve: userAccount.current[0].address,   
                 freeze: userAccount.current[0].address,
