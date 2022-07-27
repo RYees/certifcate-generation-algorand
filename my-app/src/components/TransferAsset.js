@@ -8,14 +8,15 @@ import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 
 const algosdk = require("algosdk");
 
-const AssetOptin = ({userAccount}) => {
+const TransferAsset = ({userAccount}) => {
     const receiver = useRef()
     const assetIndex = useRef()
     const note = useRef()
     const [isLoading, setLoading] = useState(false)
 
 
-    const optInToAnAsset = async () =>{
+    const transferAnAsset = async () =>{
+      //  console.log('weird');
         setLoading(true)
         let client =   new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
                
@@ -53,15 +54,15 @@ const AssetOptin = ({userAccount}) => {
 
     return(
     <div className="create">
-        <BodyText className="title">Request Certficate</BodyText>
+        <BodyText className="title">Transfer Asset Certficate</BodyText>
         <div>
             <FormStyle onChange = {(e) => receiver.current = e.target.value} placeholder="Receiver address" /><br/>
             <FormStyle onChange = {(e) => assetIndex.current = e.target.value} placeholder="Asset index" /><br/>
             <FormStyle onChange = {(e) => note.current = e.target.value} placeholder="Note" /><br/>
-            <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
+            <TransactionButton backgroundColor onClick ={transferAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
         </div>
     </div>
     )
 }
 
-export default AssetOptin
+export default TransferAsset
