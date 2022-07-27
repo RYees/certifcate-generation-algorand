@@ -41,9 +41,39 @@ const AssetOptin = ({userAccount}) => {
    
             // Send the transaction through the SDK client
            let id = await client.sendRawTransaction(binarySignedTx).do();
-               console.log(id);
-               console.log("Account 3 optin asset = " + optsender);
-               setLoading(false)
+               console.log('wow',id['txId']);
+               if(id['txId'] !== null){
+                    console.log('great');
+                    const enc = new TextEncoder();
+                    const notes = enc.encode('An asset opt-in is requested by a 10academy traniee, approve request');
+                    
+                    try{
+                        const txn = await new algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+                            from: optsender.current,
+                            to: userAccount.current[0].address,
+                            amount : 0,
+                            note: notes,
+                            suggestedParams: {...txParamsJS}
+                        });
+                        
+                        // Use the AlgoSigner encoding library to make the transactions base64
+                        let txn_b64 = AlgoSigner.encoding.msgpackToBase64(txn.toByte());
+                        
+                        let signedTxs = await AlgoSigner.signTxn([{txn: txn_b64}])
+            
+                        // Get the base64 encoded signed transaction and convert it to binary
+                        let binarySignedTx = AlgoSigner.encoding.base64ToMsgpack(signedTxs[0].blob);
+            
+                        // Send the transaction through the SDK client
+                        let res = await client.sendRawTransaction(binarySignedTx).do();
+                            console.log('success',res)
+                            setLoading(false)
+                        }catch(err){
+                            console.log('error', err)
+                            setLoading(false)
+                        }  
+               }
+            setLoading(false)
        }catch(err){
            console.log(err)
            setLoading(false)
