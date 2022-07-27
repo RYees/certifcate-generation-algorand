@@ -1,0 +1,23 @@
+.menu{
+    display: flex;
+    justify-content: end;
+    align-items: end;    
+    flex-direction: column;
+    row-gap: 0.2rem;
+}
+
+.line{
+    height: 4px;
+    width: 3.5rem;
+    background-color: #000000;
+    margin-right: 10px;
+    margin-top: 6px;
+}
+
+.nav_contain {
+
+}
+
+.container{
+
+}
