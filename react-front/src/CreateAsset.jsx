@@ -4,8 +4,14 @@ import { FormStyle } from "./Form.style";
 import { TransactionButton } from "./Button.styles";
 import { BodyText } from "./MyAlgoWallet.styles";
 //import { TOKEN, ALGOD_SERVER, PORT, RECEIVER } from "./constants";
-import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
+// import { ALGOD_SERVER,TOKEN, PORT } from "./constants";
+const ALGOD_SERVER = 'https://testnet-algorand.api.purestake.io/ps2';
+const INDEXER_SERVER = 'https://testnet-algorand.api.purestake.io/idx2';
+const TOKEN = { 'X-API-Key': 'fetqTyZ8r82MSX9YT2pLq53iRMZwVibQx3TtrZ2h' }
+const PORT = '443';
+
 const algosdk = require("algosdk");
+//import algosdk from algosdk;
 
 const CreateAsset = ({userAccount}) => {
     
@@ -17,15 +23,15 @@ const CreateAsset = ({userAccount}) => {
     const [isLoading, setLoading] = useState(false)
 
     const createAsset = async () =>{
-        // await AlgoSigner.connect();
+       // console.log('weird now');
+        await AlgoSigner.connect();
         setLoading(true)
-        let client =   new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
+        let client =   new algosdk.Algodv2(ALGOD_SERVER, TOKEN, PORT)
                 
         //Query Algod to get testnet suggested params
         let txParamsJS = await client.getTransactionParams().do()
 
-        try{
-        
+        try{        
             const txn = await new algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
                 from: userAccount.current[0].address,
                 assetName: assetName.current,
@@ -38,10 +44,10 @@ const CreateAsset = ({userAccount}) => {
             
             const txn_b64 = await AlgoSigner.encoding.msgpackToBase64(txn.toByte());
 
-             let signedTxs  = await AlgoSigner.signTxn([{txn: txn_b64}])
-              console.log(signedTxs)
+            let signedTxs  = await AlgoSigner.signTxn([{txn: txn_b64}])
+            console.log(signedTxs)
 
-              // Get the base64 encoded signed transaction and convert it to binary
+            // Get the base64 encoded signed transaction and convert it to binary
             let binarySignedTx = await AlgoSigner.encoding.base64ToMsgpack(signedTxs[0].blob);
 
              // Send the transaction through the SDK client
@@ -49,7 +55,8 @@ const CreateAsset = ({userAccount}) => {
                 console.log(id)
                 setLoading(false)
 
-        }catch(err){
+        }
+        catch(err){
             console.log(err)
             setLoading(false)
         }
