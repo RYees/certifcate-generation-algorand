@@ -1,7 +1,7 @@
 /*global AlgoSigner*/
 
 import React from "react";
-import { Button } from "./Button.styles";
+import { Button } from "../css/Button.styles";
 
 const ConnectAlgoSigner = ({userAccount}) => {
 

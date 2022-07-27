@@ -1,6 +1,6 @@
-import cert from './img/cert.jpg';
+import cert from '../img/cert.jpg';
 import React from "react";
-import './style.css';
+import '../css/style.css';
 
 const Transaction = () => {
   const [time, setTime] = React.useState();

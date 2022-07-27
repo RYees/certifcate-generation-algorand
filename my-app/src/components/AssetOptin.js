@@ -1,8 +1,8 @@
 /*global AlgoSigner*/
 import React, { useRef, useState } from "react";
-import { FormStyle } from "./Form.style";
-import { TransactionButton } from "./Button.styles";
-import { BodyText } from "./MyAlgoWallet.styles";
+import { FormStyle } from "../css/Form.style";
+import { TransactionButton } from "../css/Button.styles";
+import { BodyText } from "../css/MyAlgoWallet.styles";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 // const ALGOD_SERVER = 'https://testnet-algorand.api.purestake.io/ps2';
 // const INDEXER_SERVER = 'https://testnet-algorand.api.purestake.io/idx2';
