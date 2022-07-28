@@ -1,13 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import React, { useState } from "react";
 import classes from "../css/MainNavigation.module.css";
 // classes in the above can be any name we want
 
 const MainNavigation = () => {
+    const nav = useNavigate();
     const [modal, setModal] = useState(false);
     const toggleModal = () => {
         setModal(!modal);
     };
+
+    const Logout = () => {
+       nav('/')
+    }
+
   return (
     <>
     <div className={classes.menu} onClick={toggleModal}>
@@ -43,7 +49,7 @@ const MainNavigation = () => {
               <Link className={classes.list3} to="/delete-asset">Delete Asset</Link>
             </li>
             <li className={classes.list2}>
-              <Link className={classes.list3} to="/logout">Logout</Link>
+              <a className={classes.list3} onClick={Logout}>Logout</a>
             </li>
           </ul>
         </nav>

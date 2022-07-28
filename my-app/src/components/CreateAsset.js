@@ -6,16 +6,18 @@ import { BodyText } from "../css/MyAlgoWallet.styles";
 import '../css/style.css';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import "../css/modal.css";
+import Header from './Header';
+
 // import Transaction from "./Transaction";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 
 const algosdk = require("algosdk");
 
 const CreateAsset = ({userAccount}) => {
-  console.log('bareren', userAccount);
     const [modal, setModal] = useState(false);
     const [status, setStatus] = useState('');
     const [isLoading, setLoading] = useState(false);
+
     const [datas, setData] = useState('[]');
     const [assets, setAsset] = useState('');
 
@@ -33,39 +35,39 @@ const CreateAsset = ({userAccount}) => {
     };
 
       // Function used to print created asset for account and assetid
-      const printCreatedAsset = async function (client, account, assetid) {
+      const printCreatedAsset = async function (client, account) {
         let accountInfo = await client.accountInformation(account).do();
-        // console.log('foo', accountInfo['created-assets']);
-        setData(accountInfo['created-assets']);
-        return datas;
+        console.log('foo', accountInfo['created-assets']);
+        // setData(accountInfo['created-assets']);
+        // return datas;
         //return accountInfo['created-assets'];
         // for (let idx = 0; idx < accountInfo['created-assets'].length; idx++) {
         //     let scrutinizedAsset = accountInfo['created-assets'][idx];
         //     if (scrutinizedAsset['index'] === assetid) {
         //         let myparms = JSON.stringify(scrutinizedAsset['params'], undefined, 2);
         //         console.log("parms = " + myparms);
-        //         return myparms;
+        //        // return myparms;
         //     }
         // }
     };
     let client =  new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
     // Function used to print asset holding for account and assetid
-    const printAssetHolding = async function (client, account) {
+    const printAssetHolding = async function (client, account, assetid) {
         let accountInfo = await client.accountInformation(account).do();
         // console.log('bar', accountInfo['assets']);
-        setAsset(accountInfo['assets']);
-        return assets;
+        // setAsset(accountInfo['assets']);
+        // return assets;
         //return accountInfo['assets'];
-        // for (let idx = 0; idx < accountInfo['assets'].length; idx++) {
-        //     let scrutinizedAssethold = accountInfo['assets'][idx];
-        //     if (scrutinizedAsset['asset-id'] === assetid) {
-        //         let myassetholding = JSON.stringify(scrutinizedAsset, undefined, 2);
-        //         console.log("assetholdinginfo = " + myassetholding);
-        //         return myassetholding;
-        //     }
-        // }
+        for (let idx = 0; idx < accountInfo['assets'].length; idx++) {
+            let scrutinizedAsset = accountInfo['assets'][idx];
+            if (scrutinizedAsset['asset-id'] === assetid) {
+                let myassetholding = JSON.stringify(scrutinizedAsset, undefined, 2);
+                console.log("assetholdinginfo = " + myassetholding);
+                //return myassetholding;
+            }
+        }
     };
-  
+  // printCreatedAsset(client, userAccount.current[0].address)
     // useEffect(() => {
     //   printAssetHolding(client, userAccount.current[0].address);
     // });
@@ -85,8 +87,7 @@ const CreateAsset = ({userAccount}) => {
                 unitName: unitName.current,
                 total: +totalUnit.current,
                 decimals: +decimals.current,
-                assetURL : +assetURL.current,
-                assetMetadataHash: "16efaa3924a6fd9d3a4824799a4ac65d",
+                assetURL : assetURL.current,
                 manager: userAccount.current[0].address,
                 reserve: userAccount.current[0].address,   
                 freeze: userAccount.current[0].address,
@@ -139,7 +140,7 @@ const CreateAsset = ({userAccount}) => {
                     toggleModal();
                     setLoading(false)
                     if(id['txId'] !== null){
-                        await printCreatedAsset(client, userAccount.current[0].address, assetID);
+                        //await printCreatedAsset(client, userAccount.current[0].address, assetID);
                         await printAssetHolding(client, userAccount.current[0].address, assetID);
                     }
             }catch(err){
@@ -158,6 +159,7 @@ const CreateAsset = ({userAccount}) => {
 
     return(
     <>
+    <Header/>
     <div className="create">
      <BodyText className="title">Create Asset for Trainee Certfication</BodyText>
         <div>

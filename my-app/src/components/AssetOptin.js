@@ -4,6 +4,7 @@ import { FormStyle } from "../css/Form.style";
 import { TransactionButton } from "../css/Button.styles";
 import { BodyText } from "../css/MyAlgoWallet.styles";
 import { AiFillCloseCircle } from 'react-icons/ai';
+import Header from "./Header";
 import "../css/modal.css";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 
@@ -97,6 +98,7 @@ const AssetOptin = ({userAccount}) => {
 
     return(
         <>
+        <Header/>
             <div className="create">
                 <BodyText className="title">Request Certficate</BodyText>
                 <div>

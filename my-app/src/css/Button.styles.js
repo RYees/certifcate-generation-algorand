@@ -9,7 +9,8 @@ export const Button = styled.button`
     padding : 20px 16px 20px 16px;
     border-radius: 200px;
     border-color : transparent;
-    margin : 20px 0;
+    margin-top: -9px;
+    margin-left: -65rem;
     font-family : 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 `
 

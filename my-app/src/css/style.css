@@ -56,3 +56,35 @@
     padding: 1rem;
 }
 
+.log_container {
+    margin: 5rem;
+}
+
+.head_title {
+font-size: 2rem;
+   color: rgb(11, 11, 69);
+}
+
+.input_f {
+    padding: 0.3rem;
+   
+}
+
+.input_f input {
+    padding: 1.2rem 9rem 1.2rem 9rem;
+    border: 1px solid #245dc74e;
+    border-radius: 30px;
+}
+
+.btn {
+    padding: 2rem;
+}
+
+.btn button {
+    padding: 1rem 3rem 1rem 3rem;
+    border-radius: 20px;
+    border: none;
+    background: rgb(11, 11, 69);
+    color: #fff;
+    font-size: 1.2rem;
+}
