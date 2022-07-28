@@ -1,20 +1,23 @@
 /*global AlgoSigner*/
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import { FormStyle } from "../css/Form.style";
 import { TransactionButton } from "../css/Button.styles";
 import { BodyText } from "../css/MyAlgoWallet.styles";
 import '../css/style.css';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import "../css/modal.css";
-import Transaction from "./Transaction";
+// import Transaction from "./Transaction";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 
 const algosdk = require("algosdk");
 
 const CreateAsset = ({userAccount}) => {
+  console.log('bareren', userAccount);
     const [modal, setModal] = useState(false);
     const [status, setStatus] = useState('');
     const [isLoading, setLoading] = useState(false);
+    const [datas, setData] = useState('[]');
+    const [assets, setAsset] = useState('');
 
     const assetURL = useRef()
     const assetName = useRef()
@@ -32,7 +35,9 @@ const CreateAsset = ({userAccount}) => {
       // Function used to print created asset for account and assetid
       const printCreatedAsset = async function (client, account, assetid) {
         let accountInfo = await client.accountInformation(account).do();
-        console.log('foo', accountInfo['created-assets']);
+        // console.log('foo', accountInfo['created-assets']);
+        setData(accountInfo['created-assets']);
+        return datas;
         //return accountInfo['created-assets'];
         // for (let idx = 0; idx < accountInfo['created-assets'].length; idx++) {
         //     let scrutinizedAsset = accountInfo['created-assets'][idx];
@@ -43,11 +48,13 @@ const CreateAsset = ({userAccount}) => {
         //     }
         // }
     };
-
+    let client =  new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
     // Function used to print asset holding for account and assetid
-    const printAssetHolding = async function (client, account, assetid) {
+    const printAssetHolding = async function (client, account) {
         let accountInfo = await client.accountInformation(account).do();
-        console.log('bar', accountInfo['assets']);
+        // console.log('bar', accountInfo['assets']);
+        setAsset(accountInfo['assets']);
+        return assets;
         //return accountInfo['assets'];
         // for (let idx = 0; idx < accountInfo['assets'].length; idx++) {
         //     let scrutinizedAssethold = accountInfo['assets'][idx];
@@ -58,7 +65,10 @@ const CreateAsset = ({userAccount}) => {
         //     }
         // }
     };
-
+  
+    // useEffect(() => {
+    //   printAssetHolding(client, userAccount.current[0].address);
+    // });
     const createAsset = async () =>{
         // await AlgoSigner.connect();
         setLoading(true);
@@ -128,10 +138,10 @@ const CreateAsset = ({userAccount}) => {
                     setStatus('Transaction sent successfully!');
                     toggleModal();
                     setLoading(false)
-                    // if(id['txId'] !== null){
-                    //     await printCreatedAsset(client, userAccount.current[0].address, assetID);
-                    //     await printAssetHolding(client, userAccount.current[0].address, assetID);
-                    // }
+                    if(id['txId'] !== null){
+                        await printCreatedAsset(client, userAccount.current[0].address, assetID);
+                        await printAssetHolding(client, userAccount.current[0].address, assetID);
+                    }
             }catch(err){
                 console.log('error', err)
                 setStatus('Asset Id not send successfully');
@@ -176,7 +186,7 @@ const CreateAsset = ({userAccount}) => {
       )}
 
     </div>
-    <Transaction/>
+    {/* <Transaction/> */}
     </>
     )
 }

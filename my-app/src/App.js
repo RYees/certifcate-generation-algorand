@@ -16,6 +16,7 @@ import AssetOptin from "./components/AssetOptin";
 import TransferAsset from "./components/TransferAsset";
 import DeleteAsset from "./components/DeleteAsset";
 import Logout from "./components/Logout";
+import Transaction from "./components/Transaction";
 
 const App =  ()  =>{
     const userAccount = useRef()
@@ -57,7 +58,9 @@ const App =  ()  =>{
               <Route path='/create-asset' element={<CreateAsset userAccount = {userAccount} />} />
               <Route path='/asset-optin' element={<AssetOptin className="optin" userAccount = {userAccount} />} />
               <Route path='/transfer-asset' element={ <TransferAsset className="optin" userAccount = {userAccount} />} />
+              <Route path='/delete~-asset' element={ <DeleteAsset className="optin" userAccount = {userAccount} />} />
               <Route path='/logout' element={ <Logout className="optin" userAccount = {userAccount} />} />
+              <Route path='/transaction' element={<Transaction className="optin" userAccount={userAccount}/>} />
             </Routes>
         </AlgoSignerMain>
         </>
