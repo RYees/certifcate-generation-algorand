@@ -1,6 +1,6 @@
 // /*global AlgoSigner*/
 import React, {useRef} from "react";
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import ConnectAlgoSigner from "./components/ConnectAlgoSigner";
 //import SignPayTransaction from "./SignPayTransaction";
 //import algoSignerlogo from '../../assets/images/algosigner.jpeg'
@@ -14,18 +14,20 @@ import Logout from "./components/Logout";
 import Transaction from "./components/Transaction";
 
 const App =  ()  =>{
+    const location = useLocation();
+    // console.log('puy',location);
     const userAccount = useRef()
     // const receipient = useRef()
     // const amount = useRef()
-
+    const isLoginPage = location.pathname.match('udeuttze');
 
     return(
     <>
       <AlgoSignerMain className="algo">
-            <ConnectAlgoSigner userAccount = {userAccount}/>           
+            { !isLoginPage && <ConnectAlgoSigner userAccount = {userAccount}/> }         
             {/* <SignPayTransaction userAccount = {userAccount} amount = {amount} receipient = {receipient} /> */}
             <Routes>
-              <Route path='/' element={<Login userAccount = {userAccount} />} />
+              <Route path='/' title="login" element={<Login userAccount = {userAccount} />} />
               <Route path='/create-asset' element={<CreateAsset userAccount = {userAccount} />} />
               <Route path='/asset-optin' element={<AssetOptin className="optin" userAccount = {userAccount} />} />
               <Route path='/transfer-asset' element={ <TransferAsset className="optin" userAccount = {userAccount} />} />

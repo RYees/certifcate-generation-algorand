@@ -2,12 +2,15 @@ import React from 'react'
 import logo from '../img/10logo.jpg';
 import pic from '../img/10a.png';
 import '../css/style.css';
-import MainNavigation from "../Layout/MainNavigation";
+import MainNavigation from "../Layout/MainNavigation.js";
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+  const istranieePage = location.pathname.match('/asset-optin');
   return (
     <>
-    <div><MainNavigation/></div>
+    <div>{!istranieePage &&<MainNavigation/>}</div>
     <div className="header">
      <div className="first_contain">
       <div className='head'>

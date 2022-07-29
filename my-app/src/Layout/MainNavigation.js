@@ -39,9 +39,9 @@ const MainNavigation = () => {
             <li className={classes.list2}>
               <Link className={classes.list3} to="/create-asset">Create Asset</Link>
             </li>
-            <li className={classes.list2}>
-              <Link className={classes.list3} to="/asset-optin">Optin Asset</Link>
-            </li>
+            {/* <li className={classes.list2}>
+              <Link className={classes.list3} to="/trainee">Optin Asset</Link>
+            </li> */}
             <li className={classes.list2}>
               <Link className={classes.list3} to="/transfer-asset">Transfer Asset</Link>
             </li>
@@ -49,7 +49,7 @@ const MainNavigation = () => {
               <Link className={classes.list3} to="/delete-asset">Delete Asset</Link>
             </li>
             <li className={classes.list2}>
-              <a className={classes.list3} onClick={Logout}>Logout</a>
+              <p className={classes.list3} onClick={Logout}>Logout</p>
             </li>
           </ul>
         </nav>

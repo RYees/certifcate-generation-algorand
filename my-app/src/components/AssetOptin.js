@@ -6,6 +6,7 @@ import { BodyText } from "../css/MyAlgoWallet.styles";
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Header from "./Header";
 import "../css/modal.css";
+import "../css/style.css";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
 
 
@@ -15,6 +16,9 @@ const AssetOptin = ({userAccount}) => {
     const [modal, setModal] = useState(false);
     const [status, setStatus] = useState('');
     const [isLoading, setLoading] = useState(false);
+    const [isOptin, setOptin] = useState(true);
+    let d = 'QmXbsyLZmwHtUTESz94wN7qFpuJFogG8o6nobX25Zbp97v';
+    const link = 'https://ipfs.io/ipfs/' + d;
 
     const optsender = useRef()
     const assetIndex = useRef()
@@ -99,6 +103,7 @@ const AssetOptin = ({userAccount}) => {
     return(
         <>
         <Header/>
+        {isOptin ?
             <div className="create">
                 <BodyText className="title">Request Certficate</BodyText>
                 <div>
@@ -108,16 +113,31 @@ const AssetOptin = ({userAccount}) => {
                     <TransactionButton backgroundColor onClick ={optInToAnAsset}>{isLoading ? "loading...": "Send Request"}</TransactionButton>
                 </div>
             </div>
+
+             
+            :
+                <div className="data-optin">
+                   <div className="optin-content">
+                    <h2 className="">
+                        Asset Request Approved!
+                    </h2>
+                    <div>
+                        <p><strong> Congratulations!!!</strong> Click the below link to see your 10academy Certfication</p>
+                        <a target="_blank"  rel="noreferrer" href={link} className="linkstyle">View 10academy Certficate</a>
+                    </div>
+                   </div>
+                </div>
+            }
             
             {modal && (
                 <div className="modal">
                 <div onClick={toggleModal} className="overlay"></div>
                 <div className="modal-content">
-                    <h2 className="text-gray-900 text-center">
+                    <h2 className="">
                     {status}
                     </h2>
                     <button className="close-modal" onClick={toggleModal}>
-                    <AiFillCloseCircle size='28px'className="text-gray-900"/>
+                    <AiFillCloseCircle size='10px' className=""/>
                     </button>
                 </div>
                 </div>

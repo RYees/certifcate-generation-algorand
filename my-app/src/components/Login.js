@@ -15,18 +15,22 @@ const Login = () => {
   const sk = useRef();
 
   const nav = useNavigate();
-  function handleLogin() {     nav("/create-asset");
-    // if(add.current.value === '2YO6QKKDJJB77S3CACUC53Y3FMPDRMWWILIZGDKB3W6TTEDCXSV75GKWYE' && sk.current.value === 'desk year radar quote topple easily sad volcano slow bench flight hollow chronic horror attract hen bread make olive tank entire right word absent area') {
-    //   nav("/create-asset");
-    //   add.current.value = '';
-    //   sk.current.value = '';
-    // }
-    // else {
-    //   setStatus('Login unsuccessful!');
-    //   toggleModal();
-    //   add.current.value = '';
-    //   sk.current.value = '';
-    // }
+  function handleLogin() {    
+    // nav("/create-asset");
+    if(add.current.value === '2YO6QKKDJJB77S3CACUC53Y3FMPDRMWWILIZGDKB3W6TTEDCXSV75GKWYE' && sk.current.value === 'desk year radar quote topple easily sad volcano slow bench flight hollow chronic horror attract hen bread make olive tank entire right word absent area') {
+      nav("/create-asset");
+      add.current.value = '';
+      sk.current.value = '';
+    }
+    else if(add.current.value !== '2YO6QKKDJJB77S3CACUC53Y3FMPDRMWWILIZGDKB3W6TTEDCXSV75GKWYE'){
+      nav("/asset-optin");
+    }
+    else {
+      setStatus('Login unsuccessful!');
+      toggleModal();
+      add.current.value = '';
+      sk.current.value = '';
+    }
   }
   return (
     <>
