@@ -1,5 +1,5 @@
 /*global AlgoSigner*/
-import React, {useRef, useState, useEffect} from "react";
+import React, {useRef, useState} from "react";
 import { FormStyle } from "../css/Form.style";
 import { TransactionButton } from "../css/Button.styles";
 import { BodyText } from "../css/MyAlgoWallet.styles";
@@ -18,9 +18,6 @@ const CreateAsset = ({userAccount}) => {
     const [status, setStatus] = useState('');
     const [isLoading, setLoading] = useState(false);
 
-    const [datas, setData] = useState('[]');
-    const [assets, setAsset] = useState('');
-
     const assetURL = useRef()
     const assetName = useRef()
     const unitName = useRef()
@@ -33,44 +30,7 @@ const CreateAsset = ({userAccount}) => {
     const toggleModal = () => {
       setModal(!modal);
     };
-
-      // Function used to print created asset for account and assetid
-      const printCreatedAsset = async function (client, account) {
-        let accountInfo = await client.accountInformation(account).do();
-        console.log('foo', accountInfo['created-assets']);
-        // setData(accountInfo['created-assets']);
-        // return datas;
-        //return accountInfo['created-assets'];
-        // for (let idx = 0; idx < accountInfo['created-assets'].length; idx++) {
-        //     let scrutinizedAsset = accountInfo['created-assets'][idx];
-        //     if (scrutinizedAsset['index'] === assetid) {
-        //         let myparms = JSON.stringify(scrutinizedAsset['params'], undefined, 2);
-        //         console.log("parms = " + myparms);
-        //        // return myparms;
-        //     }
-        // }
-    };
-    let client =  new algosdk.Algodv2(TOKEN, ALGOD_SERVER, PORT)
-    // Function used to print asset holding for account and assetid
-    const printAssetHolding = async function (client, account, assetid) {
-        let accountInfo = await client.accountInformation(account).do();
-        // console.log('bar', accountInfo['assets']);
-        // setAsset(accountInfo['assets']);
-        // return assets;
-        //return accountInfo['assets'];
-        for (let idx = 0; idx < accountInfo['assets'].length; idx++) {
-            let scrutinizedAsset = accountInfo['assets'][idx];
-            if (scrutinizedAsset['asset-id'] === assetid) {
-                let myassetholding = JSON.stringify(scrutinizedAsset, undefined, 2);
-                console.log("assetholdinginfo = " + myassetholding);
-                //return myassetholding;
-            }
-        }
-    };
-  // printCreatedAsset(client, userAccount.current[0].address)
-    // useEffect(() => {
-    //   printAssetHolding(client, userAccount.current[0].address);
-    // });
+ 
     const createAsset = async () =>{
         // await AlgoSigner.connect();
         setLoading(true);
@@ -107,7 +67,7 @@ const CreateAsset = ({userAccount}) => {
              // Send the transaction through the SDK client
             let id = await client.sendRawTransaction(binarySignedTx).do();
                 console.log('id4', id)
-                setLoading(false)
+                // setLoading(false)
             let assetID = null;
             const ptx = await algosdk.waitForConfirmation(client, id.txId, 4);
             assetID = ptx["asset-index"];  
@@ -135,14 +95,14 @@ const CreateAsset = ({userAccount}) => {
     
                 // Send the transaction through the SDK client
                 let id = await client.sendRawTransaction(binarySignedTx).do();
-                    //console.log('success', id)
+                    console.log('success', id)
                     setStatus('Transaction sent successfully!');
                     toggleModal();
                     setLoading(false)
-                    if(id['txId'] !== null){
-                        //await printCreatedAsset(client, userAccount.current[0].address, assetID);
-                        await printAssetHolding(client, userAccount.current[0].address, assetID);
-                    }
+                    // if(id['txId'] !== null){
+                    //     await printCreatedAsset(client, userAccount.current[0].address, assetID);
+                    //     await printAssetHolding(client, userAccount.current[0].address, assetID);
+                    // }
             }catch(err){
                 console.log('error', err)
                 setStatus('Asset Id not send successfully');
@@ -157,6 +117,7 @@ const CreateAsset = ({userAccount}) => {
         }
     }
 
+  
     return(
     <>
     <Header/>

@@ -17,8 +17,10 @@ const AssetOptin = ({userAccount}) => {
     const [status, setStatus] = useState('');
     const [isLoading, setLoading] = useState(false);
     const [isOptin, setOptin] = useState(true);
-    let d = 'QmXbsyLZmwHtUTESz94wN7qFpuJFogG8o6nobX25Zbp97v';
-    const link = 'https://ipfs.io/ipfs/' + d;
+    // let d = 'QmXbsyLZmwHtUTESz94wN7qFpuJFogG8o6nobX25Zbp97v';
+    // const link = 'https://ipfs.io/ipfs/' + d;
+
+    let inst = 'https://ipfs.io/ipfs/CID HASH KEY';
 
     const optsender = useRef()
     const assetIndex = useRef()
@@ -26,6 +28,9 @@ const AssetOptin = ({userAccount}) => {
     
     const toggleModal = () => {
         setModal(!modal);
+    };
+    const changeOptin = () => {
+        setOptin(!isOptin);
     };
 
     const optInToAnAsset = async () =>{
@@ -83,6 +88,7 @@ const AssetOptin = ({userAccount}) => {
                             // console.log('success',res)
                             setStatus('Asset opt-in sent successfully!');
                             toggleModal();
+                            changeOptin();
                             setLoading(false)
                         }catch(err){
                             console.log('error', err);
@@ -90,7 +96,7 @@ const AssetOptin = ({userAccount}) => {
                             toggleModal();
                             setLoading(false)
                         }  
-               }
+              }
             setLoading(false)
        }catch(err){
            console.log(err);
@@ -119,11 +125,13 @@ const AssetOptin = ({userAccount}) => {
                 <div className="data-optin">
                    <div className="optin-content">
                     <h2 className="">
-                        Asset Request Approved!
+                        Asset Request Sented!
                     </h2>
                     <div>
-                        <p><strong> Congratulations!!!</strong> Click the below link to see your 10academy Certfication</p>
-                        <a target="_blank"  rel="noreferrer" href={link} className="linkstyle">View 10academy Certficate</a>
+                        <p><strong> Congratulations!!!</strong> Follow the below format to see your certification once it is approved
+                    </p>
+                        {/* <a target="_blank"  rel="noreferrer" href={link} className="linkstyle">View 10academy Certficate</a> */}
+                        <p>{inst}</p>
                     </div>
                    </div>
                 </div>

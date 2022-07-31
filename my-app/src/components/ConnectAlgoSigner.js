@@ -8,6 +8,8 @@ import "../css/modal.css";
 const ConnectAlgoSigner = ({userAccount}) => {
   const [modal, setModal] = useState(false);
   const [state, setState] = useState('');
+
+
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -16,24 +18,27 @@ const ConnectAlgoSigner = ({userAccount}) => {
     userAccount.current =  await AlgoSigner.accounts({
          ledger: 'TestNet'
        })
-    // console.log(userAccount.current[0]['address'])
-    //console.log(userAccount.current)  
-    }
-
-const connectAlgoSigner = async () =>{
-  try {
-      //let resp = await AlgoSigner.connect();
-        await AlgoSigner.connect()
-        // console.log(resp)
-        setState('Connected Successfully!');
-        toggleModal();
-        getUserAccount()
-  } catch(err){
-    console.log(err);
-    setState('Please, first connect with your Algosigner account');
-    toggleModal();
+    // setItems(userAccount.current[0]['address'])
+    // console.log('darkk',userAccount.current[0]['address'])
+    // console.log(userAccount.current)  
+    // localStorage.setItem('items', JSON.stringify(items));
   }
-}
+  
+
+  const connectAlgoSigner = async () =>{
+    try {
+        //let resp = await AlgoSigner.connect();
+          await AlgoSigner.connect()
+          // console.log(resp)
+          setState('Connected Successfully!');
+          toggleModal();
+          getUserAccount()
+    } catch(err){
+      console.log(err);
+      setState('Please, first connect with your Algosigner account');
+      toggleModal();
+    }
+  }
   return(
     <>
         <div>

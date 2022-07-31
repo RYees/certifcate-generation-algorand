@@ -43,10 +43,10 @@ const Login = () => {
             
             <div className='fields'>
                 <div className='input_f'>
-                    <input type="text" className="input_t" placeholder='Enter your public address' ref={add} className='' />
+                    <input type="text" className="input_t" placeholder='Enter your public address' ref={add} />
                 </div>
                 <div className='input_f'>
-                    <input type="text" className="input_t" placeholder='Enter your mnemonic address' ref={sk} className=''/>
+                    <input type="text" className="input_t" placeholder='Enter your mnemonic address' ref={sk}/>
                 </div>
             </div>
               <div className='btn'>
