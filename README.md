@@ -6,7 +6,7 @@ In this project, the client is 10 Academy; the client would like to solve the ch
 React
 
 ## Backend Technology Used
-flask
+Javascript sdk
 
 ## Bolckchain
 Algorand blockchain
