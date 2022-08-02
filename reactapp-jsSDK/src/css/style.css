@@ -1,0 +1,116 @@
+.header{
+    padding: 20px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: rgb(0, 0, 0);
+    gap: 90px;
+    margin-bottom: 5rem;
+}
+.head {
+    font-size: 2rem;
+}
+.image {
+    padding: 50px 0px 0px 0px;
+}
+.first_contain {
+    width: 35rem;
+}
+.algo {
+    margin: 30px;
+    text-align: center;
+}
+
+/* section2 */
+.create {
+  margin-top: 60px;
+  padding: 10px;
+  background-color: #1d223845;
+  margin-bottom: 9rem;
+}
+
+.title {
+ color: white;
+ font-size: 2rem;
+}
+
+.titlehead {
+    font-size: 2rem;
+    color: #fff;
+}
+
+.section{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    color: #000;
+    background-color: red;
+    height: 5rem;
+    
+}
+
+.box {
+    color: #fff;
+    background-color: #1d223845;
+    padding: 1rem;
+}
+
+.log_container {
+    margin: 5rem;
+}
+
+.head_title {
+font-size: 2rem;
+   color: rgb(11, 11, 69);
+}
+
+.input_f {
+    padding: 0.3rem;
+   
+}
+
+.input_f input {
+    padding: 1.2rem 9rem 1.2rem 9rem;
+    border: 1px solid #245dc74e;
+    border-radius: 30px;
+}
+
+.btn {
+    padding: 2rem;
+}
+
+.btn button {
+    padding: 1rem 3rem 1rem 3rem;
+    border-radius: 20px;
+    border: none;
+    background: rgb(11, 11, 69);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.btn button:hover {
+    transition: 0.4s;
+    filter: brightness(3);
+}
+
+.data-optin {
+    background-color: rgba(7, 7, 101, 0.872);
+}
+.optin-content {
+    padding: 4rem;
+    color: #fff;
+    line-height: 2rem;
+}
+strong {
+    font-size: 2rem;
+    color: #df1f1f;
+}
+
+.optin-content h2{
+    font-size: 3rem;
+}
+.linkstyle {
+   color: #fff;
+}
