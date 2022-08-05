@@ -10,3 +10,13 @@ Javascript sdk
 
 ## Bolckchain
 Algorand blockchain
+
+## Installation
+To clone the repository use the below link:
+---
+    https://github.com/RYees/certifcate-generation-algorand.git
+
+To run the repository first run the following:
+---
+    npm install
+    npm start
