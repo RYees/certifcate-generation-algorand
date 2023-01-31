@@ -8,7 +8,7 @@ React
 ## Backend Technology Used
 Javascript sdk
 
-## Bolckchain
+## Blockchain
 Algorand blockchain
 
 ## Installation
