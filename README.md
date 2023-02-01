@@ -19,4 +19,10 @@ To clone the repository use the below link:
 To run the repository first run the following:
 ---
     npm install
-    npm start
+    npm start    
+
+Follow:
+---
+    admin dash =>> http://localhost:3000/create-asset
+    trainee page  =>> http://localhost:3000
+
