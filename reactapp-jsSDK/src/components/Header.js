@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-  const istranieePage = location.pathname.match('/asset-optin');
+  const istranieePage = location.pathname.match('/');
   return (
     <>
     <div>{!istranieePage &&<MainNavigation/>}</div>

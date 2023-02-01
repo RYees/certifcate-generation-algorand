@@ -36,7 +36,7 @@ const TransferAsset = ({userAccount}) => {
     const printCreatedAsset = async function (client, account, assetid) {
        //client, account, assetid);
         let accountInfo = await client.accountInformation(account).do();
-       console.log('mark',accountInfo['created-assets'][3]);
+       console.log('mark',accountInfo['created-assets']);
        let index = accountInfo['created-assets'].length - 1;
        newData = accountInfo['created-assets'][index];
        console.log('new', newData);
@@ -146,7 +146,7 @@ const TransferAsset = ({userAccount}) => {
                 </div>
             </div>
        
-          <div>worked: {fetchName}</div>
+          {/* <div>worked: {fetchName}</div> */}
             {modal && (
                 <div className="modal">
                 <div onClick={toggleModal} className="overlay"></div>
