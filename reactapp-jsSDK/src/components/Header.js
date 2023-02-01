@@ -10,7 +10,9 @@ const Header = () => {
   const istranieePage = location.pathname.match('/');
   return (
     <>
-    <div>{!istranieePage &&<MainNavigation/>}</div>
+    {/* <div>{!istranieePage &&<MainNavigation/>}</div> */}
+    {location.pathname ==='/' ? null: <MainNavigation/>}
+    {/* <div><MainNavigation/></div> */}
     <div className="header">
      <div className="first_contain">
       <div className='head'>

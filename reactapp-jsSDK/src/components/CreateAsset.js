@@ -7,6 +7,7 @@ import '../css/style.css';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import "../css/modal.css";
 import Header from './Header';
+import MainNavigation from "../Layout/MainNavigation.js";
 
 // import Transaction from "./Transaction";
 import { TOKEN, ALGOD_SERVER, PORT } from "./constants";
@@ -121,6 +122,8 @@ const CreateAsset = ({userAccount}) => {
     return(
     <>
     <Header/>
+    {/* <MainNavigation className="mt-96"/> */}
+    
     <div className="create">
      <BodyText className="title">Create Asset for Trainee Certfication</BodyText>
         <div>

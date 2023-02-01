@@ -12,8 +12,10 @@ import TransferAsset from "./components/TransferAsset";
 import DeleteAsset from "./components/DeleteAsset";
 import Logout from "./components/Logout";
 import Transaction from "./components/Transaction";
+import MainNavigation from "./Layout/MainNavigation.js";
+import Header from "./components/Header";
 
-const App =  ()  =>{
+const App =  (props)  =>{
     const location = useLocation();
     // console.log('puy',location);
     const userAccount = useRef()
